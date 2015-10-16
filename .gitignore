@@ -1,0 +1,5 @@
+cmd/feedtr/cache/*
+cmd/feedtr/outputs/*
+cmd/feedtr/transforms/*
+cmd/feedtr/config.json
+cmd/feedtr/feedtr
