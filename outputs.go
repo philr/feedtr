@@ -66,6 +66,16 @@ func (entry *FileOutputEntry) Save(content []byte) error {
     return err
   }
 
+  // The umask is applied to the FileMode passed to WriteFile. Ensure the
+  // permissions get set to allow others read access (since it is likely the
+  // outputs will be published on a web server).
+  err = os.Chmod(tempPath, 0644)
+
+  if err != nil {
+    os.Remove(tempPath)
+    return err
+  }
+
   err = os.Rename(tempPath, entry.path)
 
   if err != nil {
