@@ -6,6 +6,7 @@ import (
   "fmt"
   "github.com/philr/feedtr"
   "io"
+  "log"
   "os"
   "path/filepath"
 )
@@ -60,6 +61,8 @@ func loadConfig(configFile string) (result *feedtr.Config, err error) {
 // Loads the Config, fetches sources, then runs transformations to create
 // outputs.
 func main() {
+  log.SetOutput(os.Stdout)
+
   var configFile string
   flag.StringVar(&configFile, "config-file", "", "Path to config file from")
   flag.Parse()
